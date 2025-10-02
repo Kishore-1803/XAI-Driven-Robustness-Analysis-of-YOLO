@@ -1,6 +1,6 @@
 # 🔎 XAI-Driven Robustness Analysis of YOLO  
 
-This project implements an **explainable and robust anomaly detection pipeline** using the **Ultralytics YOLOv11** model. The workflow spans **data augmentation, preprocessing, training, robustness testing, and explainability** with **Grad-CAM, Eigen-CAM, and Saliency Maps**, alongside **uncertainty estimation** for anomaly detection.
+This project implements an **explainable , robustness , anomaly detection pipeline** using the **Ultralytics YOLOv11** model. The workflow spans **data augmentation, preprocessing, training, robustness testing, and explainability** with **Grad-CAM, Eigen-CAM, and Saliency Maps**, alongside **uncertainty estimation** for anomaly detection.
 
 ---
 
