@@ -36,11 +36,7 @@ We trained YOLOv11 models with different **input resolutions (416 vs 640)**:
 | **416x416** | 0.907         | 0.829      | 0.901 | 0.697    | Best balance, higher overall mAP |
 | **640x640** | 0.886         | 0.818      | 0.877 | 0.667    | Slightly weaker, but handles larger objects better |
 
-### 🔍 Class-wise Breakdown (640x640):  
-- **Van** → P=0.938, R=0.933, mAP50=0.973, mAP50-95=0.826  
-- **Truck** → P=0.950, R=0.913, mAP50=0.964, mAP50-95=0.802  
-- **Pedestrian** → P=0.943, R=0.942, mAP50=0.973, mAP50-95=0.835  
-
+ 
 📌 **Interpretation:**  
 - **416x416** achieved slightly higher metrics overall (best suited for balanced tasks).  
 - **640x640** was slightly weaker on mAP, but more consistent with larger objects (like trucks/vans).  
