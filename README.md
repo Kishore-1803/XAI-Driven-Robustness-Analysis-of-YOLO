@@ -160,7 +160,7 @@ We evaluated both models against various perturbations to assess their reliabili
 *Figure 9: 416 model under simulated weather conditions*
 
 **640x640 Model:**
-![640 Weather Test](Plots/SP_640x640.png)
+![640 Weather Test](Plots/SP_640X640.png)
 *Figure 10: 640 model under simulated weather conditions*
 
 ---
