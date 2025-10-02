@@ -132,11 +132,13 @@ We evaluated both models against various perturbations to assess their reliabili
 #### Gaussian Noise Robustness
 
 **416x416 Model:**
+
 ![416 Noise Test](Plots/GN_416x416.png)
 
 *Figure 5: 416 model performance under varying noise levels*
 
 **640x640 Model:**
+
 ![640 Noise Test](Plots/GN_640x640.png)
 
 *Figure 6: 640 model performance under varying noise levels*
@@ -146,11 +148,13 @@ We evaluated both models against various perturbations to assess their reliabili
 #### Motion Blur Robustness
 
 **416x416 Model:**
+
 ![416 Blur Test](Plots/Blur_416x416.png)
 
 *Figure 7: 416 model performance with motion blur*
 
 **640x640 Model:**
+
 ![640 Blur Test](Plots/Blur_640x640.png)
 
 *Figure 8: 640 model performance with motion blur*
@@ -160,11 +164,13 @@ We evaluated both models against various perturbations to assess their reliabili
 #### Salt And Ppper
 
 **416x416 Model:**
+
 ![416 Weather Test](Plots/SP_416x416.png)
 
 *Figure 9: 416 model under simulated weather conditions*
 
 **640x640 Model:**
+
 ![640 Weather Test](Plots/SP_640X640.png)
 
 *Figure 10: 640 model under simulated weather conditions*
