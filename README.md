@@ -55,7 +55,7 @@ We trained YOLOv11 models with different **input resolutions (416 vs 640)**:
 Grad-CAM (Gradient-weighted Class Activation Mapping) visualizes which regions the model focuses on when making predictions.
 
 #### Model 416x416
-![Grad-CAM 416](plots/grad_416x416.png)
+![Grad-CAM 416](Plots/grad_416x416.png)
 *Figure 1: Grad-CAM visualization for 416x416 model*
 
 **Key Observations:**
@@ -64,7 +64,7 @@ Grad-CAM (Gradient-weighted Class Activation Mapping) visualizes which regions t
 - Slight diffusion on larger vehicles
 
 #### Model 640x640
-![Grad-CAM 640](plots/grad_640x640.png)
+![Grad-CAM 640](Plots/grad_640x640.png)
 *Figure 2: Grad-CAM visualization for 640x640 model*
 
 **Key Observations:**
@@ -79,7 +79,7 @@ Grad-CAM (Gradient-weighted Class Activation Mapping) visualizes which regions t
 Saliency maps show pixel-level importance for model predictions.
 
 #### Model 416x416
-![Saliency 416](plots/saliency_416x416)
+![Saliency 416](Plots/saliency_416x416)
 *Figure 3: Saliency map for 416x416 model*
 
 **Analysis:**
@@ -88,7 +88,7 @@ Saliency maps show pixel-level importance for model predictions.
 - Some noise in background areas
 
 #### Model 640x640
-![Saliency 640](plots/saliency_640x640)
+![Saliency 640](Plots/saliency_640x640)
 *Figure 4: Saliency map for 640x640 model*
 
 **Analysis:**
@@ -132,11 +132,11 @@ We evaluated both models against various perturbations to assess their reliabili
 #### Gaussian Noise Robustness
 
 **416x416 Model:**
-![416 Noise Test](plots/GN_416X416.png)
+![416 Noise Test](Plots/GN_416X416.png)
 *Figure 5: 416 model performance under varying noise levels*
 
 **640x640 Model:**
-![640 Noise Test](plots/GN_640X640.png)
+![640 Noise Test](Plots/GN_640X640.png)
 *Figure 6: 640 model performance under varying noise levels*
 
 ---
@@ -144,11 +144,11 @@ We evaluated both models against various perturbations to assess their reliabili
 #### Motion Blur Robustness
 
 **416x416 Model:**
-![416 Blur Test](plots/Blur_416x416.png)
+![416 Blur Test](Plots/Blur_416x416.png)
 *Figure 7: 416 model performance with motion blur*
 
 **640x640 Model:**
-![640 Blur Test](plots/Blur_640x640.png)
+![640 Blur Test](Plots/Blur_640x640.png)
 *Figure 8: 640 model performance with motion blur*
 
 ---
@@ -156,11 +156,11 @@ We evaluated both models against various perturbations to assess their reliabili
 #### Salt And Ppper
 
 **416x416 Model:**
-![416 Weather Test](plots/SP_416x416.png)
+![416 Weather Test](Plots/SP_416x416.png)
 *Figure 9: 416 model under simulated weather conditions*
 
 **640x640 Model:**
-![640 Weather Test](plots/SP_640x640.png)
+![640 Weather Test](Plots/SP_640x640.png)
 *Figure 10: 640 model under simulated weather conditions*
 
 ---
