@@ -52,6 +52,7 @@ Grad-CAM (Gradient-weighted Class Activation Mapping) visualizes which regions t
 
 #### Model 416x416
 ![Grad-CAM 416](Plots/grad_416x416.png)
+
 *Figure 1: Grad-CAM visualization for 416x416 model*
 
 **Key Observations:**
@@ -61,6 +62,7 @@ Grad-CAM (Gradient-weighted Class Activation Mapping) visualizes which regions t
 
 #### Model 640x640
 ![Grad-CAM 640](Plots/grad_640x640.png)
+
 *Figure 2: Grad-CAM visualization for 640x640 model*
 
 **Key Observations:**
@@ -76,6 +78,7 @@ Saliency maps show pixel-level importance for model predictions.
 
 #### Model 416x416
 ![Saliency 416](Plots/saliency_416x416.png)
+
 *Figure 3: Saliency map for 416x416 model*
 
 **Analysis:**
@@ -85,6 +88,7 @@ Saliency maps show pixel-level importance for model predictions.
 
 #### Model 640x640
 ![Saliency 640](Plots/saliency_640x640.png)
+
 *Figure 4: Saliency map for 640x640 model*
 
 **Analysis:**
@@ -129,10 +133,12 @@ We evaluated both models against various perturbations to assess their reliabili
 
 **416x416 Model:**
 ![416 Noise Test](Plots/GN_416x416.png)
+
 *Figure 5: 416 model performance under varying noise levels*
 
 **640x640 Model:**
 ![640 Noise Test](Plots/GN_640x640.png)
+
 *Figure 6: 640 model performance under varying noise levels*
 
 ---
@@ -141,10 +147,12 @@ We evaluated both models against various perturbations to assess their reliabili
 
 **416x416 Model:**
 ![416 Blur Test](Plots/Blur_416x416.png)
+
 *Figure 7: 416 model performance with motion blur*
 
 **640x640 Model:**
 ![640 Blur Test](Plots/Blur_640x640.png)
+
 *Figure 8: 640 model performance with motion blur*
 
 ---
@@ -153,10 +161,12 @@ We evaluated both models against various perturbations to assess their reliabili
 
 **416x416 Model:**
 ![416 Weather Test](Plots/SP_416x416.png)
+
 *Figure 9: 416 model under simulated weather conditions*
 
 **640x640 Model:**
 ![640 Weather Test](Plots/SP_640X640.png)
+
 *Figure 10: 640 model under simulated weather conditions*
 
 ---
