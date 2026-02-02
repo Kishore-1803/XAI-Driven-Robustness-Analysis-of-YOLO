@@ -1,218 +1,250 @@
-# 🔎 XAI-Driven Robustness Analysis of YOLO  
+# 🔎 XAI-Driven Robustness Analysis of YOLO
 
-This project implements an **explainable , robustness , anomaly detection pipeline** using the **Ultralytics YOLOv11** model. The workflow spans **data augmentation, preprocessing, training, robustness testing, and explainability** with **Grad-CAM, Eigen-CAM, and Saliency Maps**, alongside **uncertainty estimation** for anomaly detection.
+<p align="center">
+  <strong>Explainability, robustness, and uncertainty analysis for object detection using Ultralytics YOLOv11.</strong>
+</p>
 
----
-
-## ⚙️ Workflow Overview  
-
-### 1️⃣ Data Augmentation  
-- **augmentation.ipynb** applies noise, blur, brightness changes, and flips.  
-- Output stored in `augmented_data/`.  
-
-### 2️⃣ Preprocessing  
-- **preprocess.ipynb** ensures correct label formatting and image consistency.  
-
-### 3️⃣ Dataset Splitting  
-- Train/Val/Test (70/20/10) in `augmented_data_split/`.  
-
-### 4️⃣ Model Training  
-- **training.ipynb** trains YOLOv11m with early stopping.  
-- Best weights saved at: `runs/detect/train*/weights/best.pt`.  
-
-### 5️⃣ Evaluation & Explainability  
-- **grad_cam.ipynb, eigen_cam.ipynb, saliency_map.ipynb** → highlight attention regions.  
-- **robustness_testing.ipynb** → test on perturbed images.  
-- **anomaly_detection.ipynb** → Monte Carlo Dropout for uncertainty estimation.  
+<p align="center">
+  <img src="https://img.shields.io/badge/Model-YOLOv11-blue.svg"/>
+  <img src="https://img.shields.io/badge/XAI-GradCAM%20%7C%20EigenCAM%20%7C%20Saliency-purple.svg"/>
+  <img src="https://img.shields.io/badge/Robustness-Adversarial%20%26%20Corruptions-orange.svg"/>
+  <img src="https://img.shields.io/badge/Uncertainty-Monte%20Carlo%20Dropout-green.svg"/>
+  <img src="https://img.shields.io/badge/Status-Completed-success.svg"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
+</p>
 
 ---
 
-## 📊 Training Results & Comparison  
+## 📌 Overview
 
-We trained YOLOv11 models with different **input resolutions (416 vs 640)**:  
+This project presents a **comprehensive explainable-AI (XAI) and robustness analysis pipeline** built on **Ultralytics YOLOv11** for object detection.
 
-| Image Size | Precision (P) | Recall (R) | mAP50 | mAP50-95 | Notes |
-|------------|---------------|------------|-------|----------|-------|
-| **416x416** | 0.907         | 0.829      | 0.901 | 0.697    | Best balance, higher overall mAP |
-| **640x640** | 0.886         | 0.818      | 0.877 | 0.667    | Slightly weaker, but handles larger objects better |
+The workflow integrates:
+- Data augmentation and preprocessing  
+- Model training and evaluation  
+- Robustness testing under real-world perturbations  
+- Explainability using **Grad-CAM, Eigen-CAM, and Saliency Maps**  
+- **Uncertainty estimation** via Monte Carlo Dropout for anomaly detection  
 
- 
-📌 **Interpretation:**  
-- **416x416** achieved slightly higher metrics overall (best suited for balanced tasks).  
-- **640x640** was slightly weaker on mAP, but more consistent with larger objects (like trucks/vans).  
-- **Pedestrian detection** was strong across both, showing YOLOv11 generalizes well on smaller objects.  
+The goal is to **understand not only what YOLO predicts, but why it predicts and how reliable those predictions are** under challenging conditions.
 
 ---
 
-## 🎯 Explainability Analysis: 416 vs 640
+## ⚙️ End-to-End Workflow
+
+### 1️⃣ Data Augmentation
+- `augmentation.ipynb`
+- Applies:
+  - Gaussian noise
+  - Motion blur
+  - Brightness variation
+  - Horizontal flips
+- Output stored in:
+```
+
+augmented_data/
+
+```
+
+---
+
+### 2️⃣ Preprocessing
+- `preprocess.ipynb`
+- Ensures:
+- Correct YOLO label formatting
+- Image-label consistency
+- Dataset integrity
+
+---
+
+### 3️⃣ Dataset Splitting
+- Train / Validation / Test split: **70 / 20 / 10**
+- Stored in:
+```
+
+augmented_data_split/
+
+```
+
+---
+
+### 4️⃣ Model Training
+- `training.ipynb`
+- Trains **YOLOv11m** with:
+- Early stopping
+- Multi-resolution experiments (416 vs 640)
+- Best weights saved at:
+```
+
+runs/detect/train*/weights/best.pt
+
+```
+
+---
+
+### 5️⃣ Evaluation, Explainability & Uncertainty
+- **Explainability**
+- `grad_cam.ipynb`
+- `eigen_cam.ipynb`
+- `saliency_map.ipynb`
+- **Robustness Testing**
+- `robustness_testing.ipynb`
+- **Anomaly Detection**
+- `anomaly_detection.ipynb`
+- Monte Carlo Dropout–based uncertainty estimation
+
+---
+
+## 📊 Training Results & Resolution Comparison
+
+Two input resolutions were evaluated: **416×416** and **640×640**
+
+| Image Size | Precision | Recall | mAP50 | mAP50-95 | Notes |
+|-----------|----------|--------|-------|----------|-------|
+| **416×416** | 0.907 | 0.829 | 0.901 | 0.697 | Best overall balance |
+| **640×640** | 0.886 | 0.818 | 0.877 | 0.667 | Better for large objects |
+
+### 📌 Interpretation
+- **416×416**
+- Higher overall mAP
+- More computationally efficient
+- Better robustness across perturbations
+- **640×640**
+- Slightly lower mAP
+- More consistent detection of large objects (trucks, vans)
+- **Pedestrian detection** remained strong across both resolutions
+
+---
+
+## 🎯 Explainability Analysis
 
 ### 🔥 Grad-CAM Comparison
 
-Grad-CAM (Gradient-weighted Class Activation Mapping) visualizes which regions the model focuses on when making predictions.
+Grad-CAM highlights spatial regions influencing predictions.
 
-#### Model 416x416
+#### 416×416 Model
 ![Grad-CAM 416](Plots/grad_416x416.png)
 
-*Figure 1: Grad-CAM visualization for 416x416 model*
+- Strong boundary activation
+- Concentrated attention on small objects
+- Slight diffusion on large vehicles
 
-**Key Observations:**
-- Strong activation on object boundaries
-- More concentrated heat maps on smaller objects (pedestrians)
-- Slight diffusion on larger vehicles
-
-#### Model 640x640
+#### 640×640 Model
 ![Grad-CAM 640](Plots/grad_640x640.png)
 
-*Figure 2: Grad-CAM visualization for 640x640 model*
-
-**Key Observations:**
-- More precise activation maps
-- Better spatial resolution for larger objects
-- Reduced boundary artifacts
+- More precise localization
+- Higher spatial resolution
+- Cleaner attention on large objects
 
 ---
 
-### 📍 Saliency Maps Comparison
+### 📍 Saliency Map Comparison
 
-Saliency maps show pixel-level importance for model predictions.
+Saliency maps reveal pixel-level importance.
 
-#### Model 416x416
+#### 416×416 Model
 ![Saliency 416](Plots/saliency_416x416.png)
 
-*Figure 3: Saliency map for 416x416 model*
+- Sharp edge detection
+- Compact saliency regions
+- Minor background noise
 
-**Analysis:**
-- Sharp gradients around object edges
-- Effective feature extraction on compact regions
-- Some noise in background areas
-
-#### Model 640x640
+#### 640×640 Model
 ![Saliency 640](Plots/saliency_640x640.png)
 
-*Figure 4: Saliency map for 640x640 model*
-
-**Analysis:**
-- Cleaner saliency maps with less background noise
-- Better gradient flow on large objects
-- More detailed texture capture
+- Cleaner gradients
+- Improved texture capture
+- Better large-object representation
 
 ---
 
-## 🛡️ Robustness Testing Results
+## 🛡️ Robustness Testing
 
-We evaluated both models against various perturbations to assess their reliability under adverse conditions.
-
-### Test Scenarios:
-1. **Gaussian Noise** (σ = 0.01, 0.05, 0.1)
-2. **Motion Blur** (kernel size = 5, 10, 15)
-3. **Brightness Variation** (±20%, ±40%)
-4. **Weather Simulation** (fog, rain)
-
----
-
-### 📉 Robustness Metrics Comparison
-
-| Perturbation Type | 416x416 mAP50 | 640x640 mAP50 | Performance Gap |
-|-------------------|---------------|---------------|-----------------|
-| **Clean Images** | 0.901 | 0.877 | +2.4% (416) |
-| **Gaussian Noise (σ=0.05)** | 0.823 | 0.798 | +2.5% (416) |
-| **Motion Blur (k=10)** | 0.765 | 0.742 | +2.3% (416) |
-| **Brightness -40%** | 0.712 | 0.689 | +2.3% (416) |
-| **Fog (heavy)** | 0.678 | 0.654 | +2.4% (416) |
-
-**Key Findings:**
-- ✅ **416x416 model** maintains consistent performance advantage across all perturbations
-- ✅ Both models show similar degradation patterns (~15-25% drop under severe conditions)
-- ✅ **640x640 model** is more sensitive to motion blur but handles brightness changes slightly better
+### Perturbation Scenarios
+1. Gaussian Noise (σ = 0.01, 0.05, 0.1)
+2. Motion Blur (kernel = 5, 10, 15)
+3. Brightness Variation (±20%, ±40%)
+4. Weather Simulation (fog, rain)
+5. Salt-and-Pepper Noise
 
 ---
 
-### 🖼️ Visual Robustness Comparison
+### 📉 Robustness Metrics (mAP50)
 
-#### Gaussian Noise Robustness
+| Perturbation | 416×416 | 640×640 | Advantage |
+|-------------|--------|--------|-----------|
+| Clean | 0.901 | 0.877 | +2.4% |
+| Gaussian Noise (σ=0.05) | 0.823 | 0.798 | +2.5% |
+| Motion Blur (k=10) | 0.765 | 0.742 | +2.3% |
+| Brightness −40% | 0.712 | 0.689 | +2.3% |
+| Heavy Fog | 0.678 | 0.654 | +2.4% |
 
-**416x416 Model:**
-
-![416 Noise Test](Plots/GN_416x416.png)
-
-*Figure 5: 416 model performance under varying noise levels*
-
-**640x640 Model:**
-
-![640 Noise Test](Plots/GN_640x640.png)
-
-*Figure 6: 640 model performance under varying noise levels*
-
----
-
-#### Motion Blur Robustness
-
-**416x416 Model:**
-
-![416 Blur Test](Plots/Blur_416x416.png)
-
-*Figure 7: 416 model performance with motion blur*
-
-**640x640 Model:**
-
-![640 Blur Test](Plots/Blur_640x640.png)
-
-*Figure 8: 640 model performance with motion blur*
+### 🔍 Key Findings
+- ✅ **416×416** consistently outperforms under perturbations
+- ✅ Both models degrade gracefully (15–25%)
+- ⚠️ Heavy fog and extreme brightness cause the largest drops
+- ⚠️ 640×640 is more sensitive to motion blur
 
 ---
 
-#### Salt And Ppper
+## 🖼️ Visual Robustness Examples
 
-**416x416 Model:**
+### Gaussian Noise
+![416 Noise](Plots/GN_416x416.png)
+![640 Noise](Plots/GN_640x640.png)
 
-![416 Weather Test](Plots/SP_416x416.png)
+### Motion Blur
+![416 Blur](Plots/Blur_416x416.png)
+![640 Blur](Plots/Blur_640x640.png)
 
-*Figure 9: 416 model under simulated weather conditions*
-
-**640x640 Model:**
-
-![640 Weather Test](Plots/SP_640X640.png)
-
-*Figure 10: 640 model under simulated weather conditions*
+### Salt-and-Pepper Noise
+![416 SP](Plots/SP_416x416.png)
+![640 SP](Plots/SP_640X640.png)
 
 ---
 
 ## 🎓 Key Takeaways
 
-### Model Selection Guidance
+### ✅ Choose **416×416** if:
+- Balanced detection across object sizes is needed
+- Real-time inference matters
+- Robustness is a priority
+- Compute resources are limited
 
-**Choose 416x416 when:**
-- ✅ Balanced performance across object sizes is critical
-- ✅ Computational efficiency is a priority
-- ✅ Working with diverse object scales in the same scene
-- ✅ Real-time inference speed is essential
-- ✅ Better overall robustness to perturbations is needed
-
-**Choose 640x640 when:**
-- ✅ Dealing primarily with large objects (trucks, vans)
-- ✅ Higher spatial resolution is available in input images
-- ✅ Fine-grained detail detection is required
-- ✅ Computational resources are not constrained
-- ✅ Dataset contains many far-away or large objects
+### ✅ Choose **640×640** if:
+- Dataset contains mostly large or distant objects
+- Fine-grained spatial detail is critical
+- Compute is not constrained
 
 ---
 
-## 🔬 XAI Insights
+## 🔬 XAI & Reliability Insights
 
-### Grad-CAM Findings
-- **416 model**: More generalized attention patterns, robust to scale variations
-- **640 model**: Finer-grained attention, better for detailed object analysis
-- Both models correctly focus on discriminative regions (wheels, windows, human silhouettes)
-
-### Saliency Map Findings
-- **416 model**: Produces compact, concentrated saliency regions
-- **640 model**: Captures more texture detail but with occasional background noise
-- Edge detection quality is comparable between both models
-
-### Robustness Analysis Summary
-- **416 model** demonstrates superior robustness across all perturbation types
-- Performance degradation is graceful and predictable
-- Both models struggle most with heavy fog and extreme brightness changes
-- Gaussian noise has moderate impact, suggesting good feature extraction
+- **Grad-CAM**
+- 416: generalized, scale-robust attention
+- 640: finer spatial precision
+- **Saliency Maps**
+- 416: compact, stable regions
+- 640: richer texture capture
+- **Robustness**
+- 416 shows superior stability across corruptions
+- Degradation patterns are predictable and interpretable
+- **Uncertainty Estimation**
+- Monte Carlo Dropout highlights anomalous predictions
+- Useful for safety-critical deployment
 
 ---
+
+## 🎯 Why This Project Matters
+
+- Goes beyond accuracy to **trust and reliability**
+- Demonstrates **XAI for object detection**
+- Aligns with safety-critical applications:
+- Autonomous driving
+- Surveillance
+- Robotics
+- Smart cities
+
+---
+
+⭐ *If this project helped you understand YOLO beyond metrics, consider starring the repository!* ⭐
